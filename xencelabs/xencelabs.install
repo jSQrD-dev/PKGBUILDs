@@ -1,0 +1,96 @@
+pre_install() {
+  if systemctl status xencelabs &> /dev/null; then
+    echo 'Stopping & disabling Xencelabs service'
+    systemctl disable --now xencelabs || true
+  fi
+  pkill -x xencelabs || true
+}
+post_install() {
+#some operator after deb installed
+
+userinfo=`who`
+user=`who | awk  '{print $1}'|head -1`
+
+AppName=xencelabs
+appPath=/usr/lib/$AppName
+# change permission
+if [ -f /usr/bin/$AppName ]; then
+	chmod +x /usr/bin//$AppName
+fi
+
+# Copy file to app's data path
+langDirName=language
+picDirName=Picture
+appDir=/home/$user/.local/share
+dataPath=$appDir/$AppName
+languageDir=$dataPath/config/$langDirName
+picDir=$dataPath/config/$picDirName
+
+if [ ! -d $appDir ];then
+	echo `mkdir $appDir`
+fi
+if [ ! -d $dataPath ];then
+	echo `mkdir $dataPath`
+fi
+
+chmod 777 $dataPath/
+
+sudo cp -r /usr/lib/xencelabs/config/ $appDir/xencelabs/
+sudo chmod -R 777 $appDir/xencelabs/config/
+
+#change temp file permission
+localfile="/tmp/qtsingleapp-Xencel-fb8d-lockfile"
+touch $localfile
+sudo chmod +0777 /tmp/qtsingleapp-Xencel-fb8d-lockfile
+
+echo "The installation is successful. If this is your first installation, restart your computer please"
+
+  systemctl enable --now xencelabs
+}
+
+pre_upgrade() {
+	pre_install
+}
+
+post_upgrade() {
+	post_install
+}
+
+pre_remove() {
+  pkill -x xencelabs || true
+  echo 'Making sure the services are stopped & disabled...'
+  systemctl disable --now xencelabs || true
+
+  AppName=xencelabs
+	AppDir=xencelabs
+
+  if [ -f "/usr/share/applications/$AppName.desktop" ]; then
+		rm "/usr/share/applications/$AppName.desktop"
+	fi
+
+	if [ -f "/usr/share/icons/$AppName.png" ]; then
+		rm "/usr/share/icons/$AppName.png"
+	fi
+
+	if [ -d "/usr/lib/$AppDir" ];then
+		rm -rf "/usr/lib/$AppDir"
+	fi
+
+  userinfo=`who`
+	user=`who | awk  '{print $1}'|head -1`
+	echo $user
+
+	dataPath=/home/$user/.local/share/$AppDir
+	if [ -d $dataPath ];then
+		echo `rm -rf $dataPath`
+	fi
+
+	echo "The uninstallation is successful."
+
+}
+
+post_remove() {
+	echo "remove lockfile"
+	sudo rm /tmp/qtsingleapp-Xencel-fb8d-lockfile
+}
+

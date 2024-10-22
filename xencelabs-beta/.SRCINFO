@@ -1,0 +1,17 @@
+pkgbase = xencelabs-beta
+	pkgdesc = Beta driver for the Xencelabs Pen Tablets and Pen Displays
+	pkgver = 1.3.4.26
+	pkgrel = 1
+	url = https://xencelabs.com
+	install = xencelabs.install
+	arch = x86_64
+	license = custom:xencelabs
+	depends = qt5-base
+	depends = qt5-svg
+	depends = qt5-x11extras
+	provides = xencelabs
+	conflicts = xencelabs
+	source = https://download01.xencelabs.com/file/20240729/Xencelabslinux_1.3.4-26-RC.zip
+	sha256sums = cb8b129447141497a3aedcc3885505fa41b0477c8d73b930b3173b14b227bfe0
+
+pkgname = xencelabs-beta

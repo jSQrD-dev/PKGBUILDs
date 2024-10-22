@@ -1,0 +1,6 @@
+.history/
+*/.history/
+*.​pkg.​tar.​zst
+*.zip
+*/pkg
+*/src
