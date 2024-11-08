@@ -40,9 +40,12 @@ build() {
   mv lib/*/ usr/lib/
   rmdir lib
 
-  # Replace xencelabs.desktop copy with symlink
-  ln -sf ../../../usr/share/applications/xencelabs.desktop \
-    etc/xdg/autostart/xencelabs.desktop
+  # get rid of the autostart dir
+  rm -r etc/xdg/autostart
+
+  # # Replace xencelabs.desktop copy with symlink
+  # ln -sf ../../../usr/share/applications/xencelabs.desktop \
+  #   etc/xdg/autostart/xencelabs.desktop
 
   sed -i 's|Exec=/usr/lib/xencelabs/start.sh|Exec=/usr/bin/xencelabs|' \
     "usr/share/applications/xencelabs.desktop"

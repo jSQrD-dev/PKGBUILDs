@@ -11,7 +11,7 @@ pkgbase = xencelabs
 	depends = qt5-x11extras
 	provides = xencelabs
 	conflicts = xencelabs-beta
-	source = https://download01.xencelabs.com/file/240402/xencelabslinux_1.3.2-19.zip
+	source = https://www.xencelabs.com/support/file/id/61/type/1
 	sha256sums = SKIP
 
 pkgname = xencelabs
