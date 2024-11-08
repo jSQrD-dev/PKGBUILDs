@@ -18,7 +18,7 @@ url="https://xencelabs.com"
 license=(custom:xencelabs)
 depends=('qt5-base' 'qt5-svg' 'qt5-x11extras')
 provides=('xencelabs')
-conflicts=('xencelabs-beta')
+conflicts=('xencelabs')
 install='xencelabs.install'
 source=(
   https://www.xencelabs.com/support/file/id/61/type/1

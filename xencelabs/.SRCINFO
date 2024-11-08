@@ -10,7 +10,7 @@ pkgbase = xencelabs
 	depends = qt5-svg
 	depends = qt5-x11extras
 	provides = xencelabs
-	conflicts = xencelabs-beta
+	conflicts = xencelabs
 	source = https://www.xencelabs.com/support/file/id/61/type/1
 	sha256sums = SKIP
 
