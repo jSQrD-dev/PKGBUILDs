@@ -21,7 +21,7 @@ provides=('xencelabs')
 conflicts=('xencelabs-beta')
 install='xencelabs.install'
 source=(
-  https://download01.xencelabs.com/file/${_UPLOAD_DATE}/xencelabslinux_${_TARBALL_PKGVER}.zip
+  https://www.xencelabs.com/support/file/id/61/type/1
 )
 sha256sums=(
   SKIP
